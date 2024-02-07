@@ -12,8 +12,8 @@ partial class Program
     static int MAP_HEIGHT = 40;
     static string[,] mapData = new string[MAP_HEIGHT, MAP_WIDTH];
     
-    static Antagonist1[] antagonists1; // вводим наших статических антагонистов, чтобы иметь к ним доступ
-    static Antagonist2[] antagonists2;
+    static MeleeEnemy[] antagonists1; // вводим наших статических антагонистов, чтобы иметь к ним доступ
+    static ArcherEnemy[] antagonists2;
     static Masha masha;
     static Protagonist protagonist;// и протагониста туда же
 
@@ -155,8 +155,8 @@ partial class Program
                                                // чтобы позже мы тоже могли по нему проходиться циклами + кол-во комнат известно
                                                // с прошлой строки, так что ничего нам не мешает
 
-            antagonists1 = new Antagonist1[numRooms]; // в каждой комнате генерится по 2 таракана
-            antagonists2 = new Antagonist2[numRooms];
+            antagonists1 = new MeleeEnemy[numRooms]; // в каждой комнате генерится по 2 таракана
+            antagonists2 = new ArcherEnemy[numRooms];
 
             for (int i = 0; i < numRooms; i++)
             {
@@ -207,10 +207,10 @@ partial class Program
                 // если все хорошо, то загружаем данные о нашей комнате в карту
                 // и запихитиваем комнату в массив + создаем антагонистов
 
-                Antagonist2 antagonist_2 = new Antagonist2(AntX_2, AntY_2, Health);
+                ArcherEnemy antagonist_2 = new ArcherEnemy(AntX_2, AntY_2, Health);
                 antagonists2[i] = antagonist_2;
 
-                Antagonist1 antagonist_1 = new Antagonist1(AntX_1, AntY_1, Health);
+                MeleeEnemy antagonist_1 = new MeleeEnemy(AntX_1, AntY_1, Health);
                 antagonists1[i] = antagonist_1;
 
                 DrawRoom(newRoom, AntX_1, AntY_1, AntX_2, AntY_2); 
@@ -352,7 +352,7 @@ partial class Program
 
         static void Udar()
         {
-            foreach (Antagonist1 antagonist1 in antagonists1)
+            foreach (MeleeEnemy antagonist1 in antagonists1)
             {
                 if (protagonist.HaveWeapon == true && ((protagonist.position_x + 1 == antagonist1.position_x &&
                             protagonist.position_y == antagonist1.position_y) ||
@@ -384,7 +384,7 @@ partial class Program
                 }
             }
 
-            foreach (Antagonist2 antagonist2 in antagonists2)
+            foreach (ArcherEnemy antagonist2 in antagonists2)
             {
                 if (protagonist.HaveWeapon == true && ((protagonist.position_x + 1 == antagonist2.position_x &&
                            protagonist.position_y == antagonist2.position_y) ||
@@ -603,7 +603,7 @@ partial class Program
         }
 
 
-        static void MoveAntagonists2(Antagonist2[] antagonists2, Random random)
+        static void MoveAntagonists2(ArcherEnemy[] antagonists2, Random random)
         {
             foreach (var antagonist2 in antagonists2)
             {
@@ -639,7 +639,7 @@ partial class Program
 
         }
         
-        static void MoveAntagonists1(Antagonist1[] antagonists1, Random random) // 1 в 1 предыдущий метод
+        static void MoveAntagonists1(MeleeEnemy[] antagonists1, Random random) // 1 в 1 предыдущий метод
         {
 
             foreach (var antagonist1 in antagonists1)

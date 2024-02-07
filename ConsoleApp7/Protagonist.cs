@@ -20,21 +20,6 @@
         {
         }
     }
-
-    public class Character
-    {
-        public int position_x;
-        public int position_y;
-        public int hp;
-        
-
-        public Character(int x, int y, int z)
-        {
-            position_x = x;
-            position_y = y;
-            hp = z;
-        }
-    }
     public class Protagonist : Character
     {
        
@@ -73,9 +58,9 @@
 
     
 
-    public class Antagonist1 : Character
+    public class MeleeEnemy : Character
     {
-        public Antagonist1(int x, int y, int z) : base(x, y, z) 
+        public MeleeEnemy(int x, int y, int z) : base(x, y, z) 
         
         { 
 
@@ -85,9 +70,9 @@
         
     }
 
-    public class Antagonist2 : Protagonist
+    public class ArcherEnemy : Protagonist
     {
-        public Antagonist2(int x, int y, int z) : base(x, y, z)
+        public ArcherEnemy(int x, int y, int z) : base(x, y, z)
 
         {
 
